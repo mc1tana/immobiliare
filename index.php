@@ -1,55 +1,49 @@
-<?php 
-//equivalent d'un include 'header.php'
+<?php
+// Equivalent d'un include 'header.php'
 get_header(); ?>
-
-                <h1 claas="text-center my-4">bienvenu sur le site<?php bloginfo('name'); ?> </h1>
-                <p><?php bloginfo('description') ?></p>
-                <div class="row">
-                    <div class="col-4"></div>
-                    <div class="col-4"></div>
-                    <div class="col-4"></div>
-
-                </div>
-                <a href="<?php the_permalink();?> ">
-                <div class="row">
-                <?php
-                    if(have_posts()){//si on a des articles?>
+        <div class="container">
+            <h1>Bienvenue sur le site <?php bloginfo('name'); ?></h1>
+            <p><?php bloginfo('description'); ?></p>
+            
+            
+            <div class="row">
+            <?php
+                if(have_posts())    // Si on a des articles
+                {
+                    while(have_posts())     // On parcourt les articles
+                    {
+                        the_post();?>
                         
-                       <?php while(have_posts()){
-                            the_post();//on parcourt les articles?>
-                            <div class="col-4">
-                                <a class="card-link" href="<?php the_permalink();?> ">
+                        <div class="col-4">
+                        <a class="card-link" href=<?php the_permalink();?>>
+                            <div class="card shadow mb-4">
+                                <?php 
+                                $large_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );
+                                $image_url = $large_image_url[0] ?? null;
+                                echo '<img src="'.$image_url.'">'; ?>
+                                
+                                <div class="card-body">
+                                    <h2 class="card-title">
+                                        <?php the_title(); ?>
+                                    </h2>
 
-                                <div class="card shadow mb-4">
-
-                                <?php $large_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );
-                                        $image_url = $large_image_url[0] ?? null;//?? egale à isset($large_image_url[0] )? $large_image_url[0] : null  
-                                        echo '<img  src="'.$image_url.'">'; ?>
-                                    <div class="card-body">
-                                            <h1 ><?php the_title(); ?></h1>
-                                            
-                                            
-
-                                            
-
-                                    </div>
+                                    <p> Surface : <?php echo get_post_meta($post->ID, 'surface', true); ?> m² </p>
+                                    <p> Prix : <?php echo get_post_meta($post->ID, 'prix', true); ?> € </p>
+                                    
+                                    <p><?php the_content()?></p>
                                     <div class="card-footer">
-                                        <p> <?php echo get_the_date(); ?> </p>
-                                    
+                                    <p><?php echo get_the_date() ?></p>
                                     </div>
-
-                                       
-                                    
                                 </div>
-                                </a>
                             </div>
-                
-                           <!-- the_title(); c'est idem que echo get_the_title() -->
-
-                     <?php   }
-                    }
-                ?>
-                </div> 
-
+                        </div>
+                    
+              <?php }
+                }
+            
+            ?>
+            </div>
+        </div>
 <?php 
-get_footer();
+// On inclue le footer
+get_footer(); ?>

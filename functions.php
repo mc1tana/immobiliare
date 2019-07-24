@@ -22,3 +22,32 @@
     require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
 //image à la une 
 add_theme_support( 'post-thumbnails' );
+
+function register_housing(){
+
+    register_post_type('housing',[
+       
+                'label' => 'logements',
+                'labels' => [
+                    'name' => 'logements',
+                    'singular_name' => 'logement',
+                    'all_items' => 'Tous les logements',
+                    'add_new_item' => 'Ajouter un logement',
+                    'edit_item' => 'Éditer le logement',
+                    'new_item' => 'Nouveau logement',
+                    'view_item' => 'Voir le logement',
+                    'search_items' => 'Rechercher parmi les logements',
+                    'not_found' => 'Pas de logement trouvé',
+                    'not_found_in_trash' => 'Pas de logement dans la corbeille'
+                ],
+                'public' => true,
+                'supports' => ['title', 'editor', 'author', 'thumbnail'],
+                'has_archive' => true,
+                'show_in_rest' => true, // Si on veut activer Gutenberg
+            ]);
+       
+}
+
+//ajout des annonces
+
+add_action('init','register_housing');
