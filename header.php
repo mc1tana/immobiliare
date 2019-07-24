@@ -32,7 +32,7 @@
                                 'depth'	          => 2, // 1 = no dropdowns, 2 = with dropdowns.
                                 'container'       => 'div',
                                 'container_class' => 'collapse navbar-collapse',
-                                'container_id'    => '#navbarNav',
+                                'container_id'    => 'navbarNav',
                                 'menu_class'      => 'navbar-nav ml-auto',
                                 'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
                                 'walker'          => new WP_Bootstrap_Navwalker(),

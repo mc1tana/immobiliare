@@ -7032,3 +7032,17 @@ a.text-dark:hover, a.text-dark:focus {
 
 body {
   background-color: #00e1ff; }
+
+.card-link {
+  color: #000;
+  text-decoration: none; }
+  .card-link .card {
+    transition: 0.5s; }
+  .card-link:hover .card {
+    transform: scale(1.1); }
+
+.article-image {
+  height: 500px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; }
