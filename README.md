@@ -3,7 +3,7 @@
 un super theme wordpress pour les agence 
 
 
-pour travailler qur le projet ,il faut cloner et installer lees dependances NPM:
+pour travailler que le projet ,il faut cloner et installer lees dependances NPM:
 
 ```
 git clone...
